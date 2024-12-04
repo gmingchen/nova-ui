@@ -3,7 +3,7 @@
 
 <template>
   <div>
-    <NIcon name="plus" size="20px" :color="'red'"></NIcon>
+    <NIcon name="plus" size="20px"></NIcon>
   </div>
 </template>
 

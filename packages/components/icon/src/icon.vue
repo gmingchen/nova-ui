@@ -5,6 +5,10 @@ import { iconProps } from './icon'
 
 defineOptions({ name: 'NIcon' })
 
+if (true) {
+
+}
+
 const ns = useNamespace('icon')
 
 const { name, color, size } = defineProps(iconProps)
@@ -35,5 +39,4 @@ const style = computed(() => {
 </template>
 
 <style lang="scss" scoped>
-@import '//at.alicdn.com/t/c/font_4720848_tpxdru2pvml.css';
 </style>
