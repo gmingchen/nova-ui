@@ -1,6 +1,6 @@
 import { PropType } from 'vue'
-import { Scene } from '@nova-ui/constants'
+import { SceneType } from '@nova-ui/constants'
 
 export const useSceneProp = () => ({
-  type: String as PropType<Scene>,
+  type: String as PropType<SceneType>,
 })

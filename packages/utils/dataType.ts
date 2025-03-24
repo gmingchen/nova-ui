@@ -6,3 +6,6 @@ export const isBoolean = (value: any): value is boolean => typeof value === 'boo
 export const isUndefined = (value: any): value is undefined => value === undefined
 export const isStringNumber = (value: any): value is string =>
   isString(value) && !Number.isNaN(Number(value))
+
+export const isObject = (value: any): value is Record<any, any> =>
+  value !== null && typeof value === 'object'

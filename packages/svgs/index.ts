@@ -127,3 +127,5 @@ export const svgs = [
   'WarningCircleFill',
   'WarningCircle',
 ] as const
+
+export type SvgType = typeof svgs[number]

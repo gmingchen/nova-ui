@@ -1,7 +1,7 @@
 import { PropType } from 'vue'
-import { LoadingIcon, loadingIcons } from '@nova-ui/constants'
+import { LoadingIconType, loadingIcons } from '@nova-ui/constants'
 
 export const useLoadingIconProp = () => ({
-  type: String as PropType<LoadingIcon>,
+  type: String as PropType<LoadingIconType>,
   default: () => loadingIcons[0],
 })

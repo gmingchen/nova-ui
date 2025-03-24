@@ -1,6 +1,6 @@
 import { PropType } from 'vue'
-import { Size } from '@nova-ui/constants'
+import { SizeType } from '@nova-ui/constants'
 
 export const useSizeProp = () => ({
-  type: String as PropType<Size>,
+  type: String as PropType<SizeType>,
 })

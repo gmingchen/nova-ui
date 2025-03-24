@@ -1,3 +1,3 @@
 export const scenes = ['primary', 'success', 'warning', 'danger', 'error', 'info'] as const
 
-export type Scene = typeof scenes[number]
+export type SceneType = typeof scenes[number]

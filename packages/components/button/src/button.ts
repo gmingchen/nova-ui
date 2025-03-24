@@ -10,12 +10,8 @@ export type ButtonTypeType = typeof buttonTypes[number]
 export const buttonProps = {
   scene: useSceneProp(),
   size: useSizeProp(),
-  disabled: {
-    type: Boolean,
-  },
-  loading: {
-    type: Boolean,
-  },
+  disabled: Boolean,
+  loading: Boolean,
   loadingIcon: useLoadingIconProp(),
   prefixIcon: useIconProp(),
   suffixIcon: useIconProp(),

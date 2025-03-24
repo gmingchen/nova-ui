@@ -1,36 +1,76 @@
 <script setup lang="ts">
-import { scenes } from '@nova-ui/constants'
-import { buttonShapes, buttonTypes } from '@nova-ui/components'
+import { ScrollPayload } from '@nova-ui/components'
+import { ref } from 'vue'
 
-const onClick = () => {
-  console.log('click');
+const scrollbarRef = ref()
+const setScrollTop = () => {
+  scrollbarRef.value.setScrollTop(300)
+}
+const setScrollLeft = () => {
+  scrollbarRef.value.setScrollLeft(300)
+}
+const setScrollTo = () => {
+  // scrollbarRef.value.setScrollTo(300, 300)
+  scrollbarRef.value.setScrollTo({
+    top: 300,
+    left: 300,
+    behavior: 'smooth',
+  })
+}
+
+const onScroll = (data: ScrollPayload) => {
+  console.log(data);
 }
 </script>
 
 <template>
   <div>
-    <!-- <div v-for="shape in buttonShapes" :key="shape" style="margin-bottom: 20px">
-      <div v-for="type in buttonTypes" :key="type" style="margin-bottom: 20px">
-        <NButton :type="type" :shape="shape">
-          <NIcon v-if="shape === 'circle'" name="Plus"></NIcon>
-          <span v-else>default</span>
-        </NButton>
-        <NButton v-for="scene in scenes" :key="scene" :scene="scene" :type="type" :shape="shape">
-          <NIcon v-if="shape === 'circle'" name="Plus"></NIcon>
-          <span v-else>{{ scene }}</span>
-        </NButton>
+    <NButton prefix-icon="Plus" @click="setScrollTop">
+      Set ScrollTop to 300
+    </NButton>
+    <NButton prefix-icon="Plus" @click="setScrollLeft">
+      Set ScrollLeft to 300
+    </NButton>
+    <NButton prefix-icon="Plus" @click="setScrollTo">
+      Set ScrollTo to 300
+    </NButton>
+    <br />
+    <br />
+    <NScrollbar
+      ref="scrollbarRef"  
+      height="600px"
+      :always="false"
+      :native="false"
+      @scroll="onScroll"
+    >
+      <div
+        v-for="item in 100"
+        :key="item"
+        style="width: calc(150%);margin-bottom: 20px;"
+      >
+        <span v-for="it in 10" :key="it">滚动条-{{ item }}-{{ it }}&nbsp;&nbsp;&nbsp;</span>
       </div>
-    </div> -->
-    <div v-for="type in buttonTypes" :key="type" style="margin-bottom: 20px">
-      <NButtonGroup :type="type">
-        <NButton v-for="item in 3" :key="item">default-{{ item }}</NButton>
-      </NButtonGroup>
-      <br>
-      <NButtonGroup v-for="scene in scenes" :key="scene" :scene="scene" :type="type">
-        <NButton v-for="item in 3" :key="item">{{ scene }}-{{ item }}</NButton>
-      </NButtonGroup>
-    </div>
+    </NScrollbar>
   </div>
 </template>
 
-<style scoped></style>
+<style>
+* {
+  box-sizing: border-box;
+}
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+}
+#app {
+  height: 100%;
+  padding: 20px;
+  overflow: hidden;
+  & > div {
+    height: 100%;
+    overflow: hidden;
+  }
+}
+</style>
