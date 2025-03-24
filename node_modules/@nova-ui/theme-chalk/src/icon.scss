@@ -1,5 +1,7 @@
-@use 'mixins/mixins.scss' as *;
+@use 'mixins' as *;
 
 @include b(icon) {
-  background-color: blue;
+  display: inline-flex;
+  width: 1em;
+  height: 1em;
 }

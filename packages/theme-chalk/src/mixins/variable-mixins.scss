@@ -1,0 +1,47 @@
+@use 'sass:map';
+@use 'function' as *;
+
+@mixin set-variable($name, $value) {
+  #{getVariableName($name)}: #{$value};
+}
+
+@mixin set-variable-from-map($name, $key, $variableMap) {
+  #{getVariableName($name, $key)}: #{map.get($variableMap, $key)};
+}
+@mixin set-variable-from-keys($name, $keys, $variableMap) {
+  @each $key in $keys {
+    @include set-variable-from-map($name, $key, $variableMap)
+  }
+}
+@mixin set-all-variable-from-map($name, $variableMap) {
+  @each $key, $value in $variableMap {
+    #{getVariableName($name, $key)}: #{$value};
+  }
+}
+
+@mixin set-base-variable-from-map($name, $key, $variableMap) {
+  #{getVariableName($name, $key)}: #{map.get($variableMap, $key, 'base')};
+}
+@mixin set-base-variable-from-keys($name, $keys, $variableMap) {
+  @each $key in $keys {
+    @include set-base-variable-from-map($name, $key, $variableMap)
+  }
+}
+
+@mixin set-level-variable-from-map($name, $key, $variableMap) {
+  #{getVariableName($name, $key)}: #{map.get($variableMap, $key)};
+}
+@mixin set-level-variable-from-keys($name, $keys, $levelPrefix, $variableMap) {
+  @each $key in $keys {
+    @for $i from 1 through 9 {
+      $levelKey: #{$levelPrefix}-#{$i};
+      #{getVariableName($name, $key, $levelKey)}: #{map.get($variableMap, $key, $levelKey)};
+    }
+  }
+}
+
+@mixin set-variable-from-global($name, $globalName) {
+  $variableName: getVariableName($name...);
+  $globalVariableName: #{getVariableName($globalName...)};
+  #{$variableName}: var(#{$globalVariableName});
+}

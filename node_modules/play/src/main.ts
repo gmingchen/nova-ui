@@ -1,13 +1,18 @@
-import { createApp } from 'vue'
+import { createApp, Plugin } from 'vue'
 import App from './App.vue'
 
-import Icon from '@nova-ui/components/icon'
+import * as components from '@nova-ui/components'
 import '@nova-ui/theme-chalk/src/index.scss'
-
-const plugins = [ Icon ]
 
 const app = createApp(App)
 
-plugins.forEach(plugin => app.use(plugin))
+for (const key in components) {
+  if (Object.prototype.hasOwnProperty.call(components, key)) {
+    if (key.startsWith('N')) {
+      const element = components[key as keyof typeof components]
+      app.use(element as Plugin<[]>)
+    }
+  }
+}
 
 app.mount('#app')

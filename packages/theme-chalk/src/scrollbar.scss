@@ -1,0 +1,124 @@
+@use 'mixins' as *;
+
+$bar: #{$namespace}-bar;
+$wrap: #{$namespace}-scrollbar__wrap;
+
+@include b(scrollbar) {
+  @include set-variable(('scrollbar-thumb-size'), '6px');
+  @include set-variable(('scrollbar-thumb-border-radius'), getVariableValue('border-radius', 'small'));
+  @include set-variable(('scrollbar-thumb-background-color'), getVariableValue('border-color', 'light'));
+  @include set-variable(('scrollbar-thumb-hover-background-color'), getVariableValue('border-color'));
+}
+
+@include b(scrollbar) {
+  overflow: hidden;
+  position: relative;
+  width: 100%;
+  height: 100%;
+  @include e(wrap) {
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    &::-webkit-scrollbar {
+      display: none;
+    }
+  }
+
+  &:hover {
+    & > .#{$bar} {
+      opacity: 1;
+    }
+  }
+
+  @include when(native) {
+    & > .#{$wrap} {
+      &::-webkit-scrollbar {
+        width: getVariableValue('scrollbar-thumb-size');
+        height: getVariableValue('scrollbar-thumb-size');
+      }
+      &::-webkit-scrollbar-track {
+        background: transparent;
+        cursor: pointer;
+        border-radius: getVariableValue('scrollbar-thumb-border-radius');
+        opacity: 0;
+      }
+      &::-webkit-scrollbar-thumb {
+        background: getVariableValue('scrollbar-thumb-background-color');
+        cursor: pointer;
+        border-radius: getVariableValue('scrollbar-thumb-border-radius');
+        &:hover {
+          background: getVariableValue('scrollbar-thumb-hover-background-color');
+        }
+      }
+      &:hover {
+        &::-webkit-scrollbar {
+          display: block;
+        }
+      }
+    }
+
+    @include when(always) {
+      & > .#{$wrap} {
+        &::-webkit-scrollbar {
+          display: block;
+        }
+      }
+    }
+  }
+
+  @include m(vertical) {
+    & > .#{$wrap} {
+      overflow-x: hidden;
+    }
+  }
+  @include m(horizontal) {
+    & > .#{$wrap} {
+      overflow-y: hidden;
+    }
+  }
+}
+
+@include b(bar) {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  border-radius: getVariableValue('scrollbar-thumb-border-radius');
+  opacity: 0;
+  transition: opacity 0.1s ease-out;
+  cursor: pointer;
+  &:hover {
+    z-index: 2;
+    opacity: 1;
+  }
+  &:has(:active) {
+    opacity: 1;
+  }
+
+  @include e(thumb) {
+    border-radius: inherit;
+    background-color: getVariableValue('scrollbar-thumb-background-color');
+    &:hover {
+      background-color: getVariableValue('scrollbar-thumb-hover-background-color');
+    }
+  }
+
+  @include m(vertical) {
+    top: 0;
+    & > div {
+      width: getVariableValue('scrollbar-thumb-size');
+    }
+  }
+
+  @include m(horizontal) {
+    left: 0;
+    & > div {
+      height: getVariableValue('scrollbar-thumb-size');
+    }
+  }
+
+  @include when(always) {
+    & > div {
+      opacity: 1;
+    }
+  }
+}

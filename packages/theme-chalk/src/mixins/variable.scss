@@ -1,0 +1,179 @@
+@use 'sass:math';
+@use 'sass:map';
+@use 'sass:color';
+@use 'sass:list';
+
+@use './function.scss' as *;
+
+$sceneTypes: primary, success, warning, danger, error, info;
+$sizeTypes: '', small, large;
+$moreSizeTypes: list.join((smaller, medium, larger), $sizeTypes);
+$depthTypes: '', light, dark;
+$moreDepthTypes: list.join((lighter, darker), $depthTypes);
+
+$color: () !default;
+$color: map.deep-merge(
+  (
+    'white': #ffffff,
+    'black': #000000,
+    'transparent': transparent,
+    '': (
+      'base': inherit,
+    ),
+    'primary': (
+      'base': #4285F4,
+    ),
+    'success': (
+      'base': #0F9D58,
+    ),
+    'warning': (
+      'base': #F4B400,
+    ),
+    'danger': (
+      'base': #DB4437,
+    ),
+    'error': (
+      'base': #B00020,
+    ),
+    'info': (
+      'base': #616161,
+    ),
+  ),
+  $color
+);
+
+$color-white: map.get($color, 'white') !default;
+$color-black: map.get($color, 'black') !default;
+$color-transparent: map.get($color, 'transparent') !default;
+$color-default: map.get($color, '', 'base') !default;
+$color-primary: map.get($color, 'primary', 'base') !default;
+$color-success: map.get($color, 'success', 'base') !default;
+$color-warning: map.get($color, 'warning', 'base') !default;
+$color-danger: map.get($color, 'danger', 'base') !default;
+$color-error: map.get($color, 'error', 'base') !default;
+$color-info: map.get($color, 'info', 'base') !default;
+
+@mixin set-light-color($type, $number) {
+  $color: map.deep-merge(
+    (
+      $type: (
+        'light-#{$number}':
+          color.mix(
+            $color-white,
+            map.get($color, $type, 'base'),
+            math.percentage(math.div($number, 10))
+          ),
+      ),
+    ),
+    $color
+  ) !global;
+}
+@each $type in $sceneTypes {
+  @for $i from 1 through 9 {
+    @include set-light-color($type, $i);
+  }
+}
+
+$size: () !default;
+$size: map.merge(
+  (
+    '': 32px,
+    'small': 24px,
+    'large': 40px,
+  ),
+  $size
+);
+
+$space: () !default;
+$space: map.merge(
+  (
+    '': 12px,
+    'small': 8px,
+    'smaller': 4px,
+    'medium': 16px,
+    'large': 20px,
+    'larger': 24px,
+  ),
+  $space
+);
+
+$fill-color: () !default;
+$fill-color: map.merge(
+  (
+    '': map.get($color, 'white'),
+    'light': #f5f7fa,
+    'dark': #ebedf0,
+  ),
+  $fill-color
+);
+
+$mask-color: () !default;
+$mask-color: map.merge(
+  (
+    '': rgba(255, 255, 255, 0.5),
+    'light': rgba(255, 255, 255, 0.3),
+    'dark': rgba(255, 255, 255, 0.7),
+  ),
+  $mask-color
+);
+
+$font-size: () !default;
+$font-size: map.merge(
+  (
+    '': 14px,
+    'small': 13px,
+    'smaller': 12px,
+    'medium': 16px,
+    'large': 18px,
+    'larger': 20px,
+  ),
+  $font-size
+);
+
+$fontColorTypes: list.join(('', hover, disabled, 'white', 'black'), $sceneTypes);
+$font-color: () !default;
+$font-color: map.merge(
+  (
+    '': #333333,
+    'hover': getVariableValue('color', 'primary'),
+    'disabled': #c5c8ce,
+    'white': getVariableValue('color', 'white'),
+    'black': getVariableValue('color', 'black'),
+    'primary': getVariableValue('color', 'primary'),
+    'success': getVariableValue('color', 'success'),
+    'warning': getVariableValue('color', 'warning'),
+    'danger': getVariableValue('color', 'danger'),
+    'error': getVariableValue('color', 'error'),
+    'info': getVariableValue('color', 'info'),
+  ),
+  $font-color
+);
+
+$border-width: 1px !default;
+$border-style: solid !default;
+$border-color: () !default;
+$border-color: map.merge(
+  (
+    '': #dcdfe6,
+    'light': #e4e7ed,
+    'lighter': #ebeef5,
+    'dark': #d4d7de,
+    'darker': #cdd0d6,
+  ),
+  $border-color
+);
+$borderRadiusTypes: '', small, smaller, large, larger, round, circle;
+$border-radius: () !default;
+$border-radius: map.merge(
+  (
+    '': 6px,
+    'small': 4px,
+    'smaller': 2px,
+    'large': 8px,
+    'larger': 10px,
+    'round': 20px,
+    'circle': 50%,
+  ),
+  $border-radius
+);
+

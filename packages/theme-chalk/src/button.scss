@@ -1,0 +1,332 @@
+@use 'sass:map';
+@use 'mixins' as *;
+
+$button: () !default;
+$button: map.merge(
+  (
+    'font-color': getVariableValue('font-color'),
+    'border-color': getVariableValue('border-color'),
+    'background-color': getVariableValue('fill-color'),
+
+    'hover-font-color': getVariableValue('font-color', 'hover'),
+    'hover-border-color': getVariableValue('color', 'primary', 'light-7'),
+    'hover-background-color': getVariableValue('color', 'primary', 'light-9'),
+
+    'disabled-font-color': getVariableValue('font-color', 'disabled'),
+    'disabled-border-color': getVariableValue('border-color', 'light'),
+    'disabled-background-color': getVariableValue('fill-color'),
+  ),
+  $button
+);
+
+@include b(button) {
+  @include set-all-variable-from-map('button', $button);
+
+  display: inline-flex;
+  vertical-align: middle;
+  justify-content: center;
+  align-items: center;
+  line-height: 1;
+  white-space: nowrap;
+  cursor: pointer;
+  outline: none;
+  user-select: none;
+  transition: 0.1s;
+
+  & + & {
+    margin-left: getVariableValue('space');
+  }
+
+  @include e(loading) {
+    margin-right: getVariableValue('space', 'small');
+    animation: rotate 0.6s linear infinite;
+  }
+  @include e(prefix) {
+    margin-right: getVariableValue('space', 'small');
+  }
+  @include e(suffix) {
+    margin-left: getVariableValue('space', 'small');
+  }
+}
+
+@mixin button-action-scene-color($scene) {
+  $scene-color-types: (
+    '': (
+      'font-color': (
+        'color',
+        'white'
+      ),
+      'border-color': (
+        'color',
+        $scene
+      ),
+      'background-color': (
+        'color',
+        $scene,
+      ),
+    ),
+    'hover': (
+      'font-color': (
+        'color',
+        'white'
+      ),
+      'border-color': (
+        'color',
+        $scene,
+        'light-3',
+      ),
+      'background-color': (
+        'color',
+        $scene,
+        'light-3',
+      ),
+    ),
+    'disabled': (
+      'font-color': (
+        'color',
+        'white'
+      ),
+      'border-color': (
+        'color',
+        $scene,
+        'light-5',
+      ),
+      'background-color': (
+        'color',
+        $scene,
+        'light-5',
+      ),
+    )
+  );
+  @each $action, $colorMap in $scene-color-types {
+    @each $color, $list in $colorMap {
+      @include set-variable-from-global((button, $action, $color), $list);
+    }
+  }
+}
+
+@mixin plain-action-scene-color($scene) {
+  $scene-color-types: (
+    '': (
+      'font-color': (
+        'color',
+        $scene
+      ),
+      'border-color': (
+        'color',
+        $scene,
+        'light-5',
+      ),
+      'background-color': (
+        'color',
+        $scene,
+        'light-9',
+      ),
+    ),
+    'hover': (
+      'font-color': (
+        'color',
+        'white'
+      ),
+      'border-color': (
+        'color',
+        $scene
+      ),
+      'background-color': (
+        'color',
+        $scene,
+      ),
+    ),
+    'disabled': (
+      'font-color': (
+        'color',
+        $scene,
+        'light-5',
+      ),
+      'border-color': (
+        'color',
+        $scene,
+        'light-8',
+      ),
+      'background-color': (
+        'color',
+        $scene,
+        'light-9',
+      ),
+    )
+  );
+  @each $action, $colorMap in $scene-color-types {
+    @each $color, $list in $colorMap {
+      @include set-variable-from-global((button, $action, $color), $list);
+    }
+  }
+}
+
+@mixin text-action-scene-color($scene) {
+  $scene-color-types: (
+    '': (
+      'font-color': (
+        'color',
+        $scene
+      ),
+      'background-color': (
+        'color',
+        'white',
+      ),
+    ),
+    'hover': (
+      'font-color': (
+        'color',
+        $scene,
+        'light-3'
+      ),
+      'background-color': (
+        'fill-color',
+        'light',
+      ),
+    ),
+    'disabled': (
+      'font-color': (
+        'color',
+        $scene,
+        'light-5'
+      ),
+      'background-color': (
+        'color',
+        'white',
+      ),
+    )
+  );
+  @each $type, $colorMap in $scene-color-types {
+    @each $color, $list in $colorMap {
+      @include set-variable-from-global((button, $type, $color), $list);
+    }
+  }
+}
+
+@mixin link-action-scene-color($scene) {
+  $scene-color-types: (
+    '': (
+      'font-color': (
+        'color',
+        $scene
+      ),
+    ),
+    'hover': (
+      'font-color': (
+        'color',
+        $scene,
+        'light-3'
+      ),
+    ),
+    'disabled': (
+      'font-color': (
+        'color',
+        $scene,
+        'light-5'
+      ),
+    )
+  );
+  @each $type, $colorMap in $scene-color-types {
+    @each $color, $list in $colorMap {
+      @include set-variable-from-global((button, $type, $color), $list);
+    }
+  }
+}
+
+@include b(button) {
+  color: getVariableValue('button', 'font-color');
+  border-color: getVariableValue('button', 'border-color');
+  background-color: getVariableValue('button', 'background-color');
+  &:hover {
+    color: getVariableValue('button', 'hover-font-color');
+    border-color: getVariableValue('button', 'hover-border-color');
+    background-color: getVariableValue('button', 'hover-background-color');
+  }
+
+  padding: 0 getVariableValue('space');
+  height: getVariableValue('size');
+  font-size: getVariableValue('font-size');
+  
+  border-width: getVariableValue('border-width');
+  border-style: getVariableValue('border-style');
+  border-radius: getVariableValue('border-radius');
+
+  @each $buttonSize in $sizeTypes {
+    @include m($buttonSize) {
+      padding: 0 getVariableValue('space', $buttonSize);
+      height: getVariableValue('size', $buttonSize);
+      font-size: getVariableValue('font-size', $buttonSize);
+    }
+  }
+
+  @include when(disabled) {
+    &,
+    &:hover {
+      cursor: not-allowed;
+      color: getVariableValue('button', 'disabled-font-color');
+      border-color: getVariableValue('button', 'disabled-border-color');
+      background-color: getVariableValue('button', 'disabled-background-color');
+    }
+  }
+  @include when(loading) {
+    position: relative;
+    pointer-events: none;
+    &:before {
+      content: '';
+      position: absolute;
+      inset: -1px;
+      z-index: 1;
+      pointer-events: none;
+      border-radius: inherit;
+      background-color: getVariableValue('mask-color', 'light');
+    }
+  }
+  @include when(round) {
+    border-radius: getVariableValue('border-radius', 'round');
+  }
+  @include when(circle) {
+    width: getVariableValue('size');
+    border-radius: getVariableValue('border-radius', 'circle');
+  }
+  @include when(plain) {
+    @include set-variable-from-global(('button', 'background-color'), 'fill-color');
+    @include set-variable-from-global(('button', 'hover-background-color'), 'fill-color');
+    @include set-variable-from-global(('button', 'hover-border-color'), ('color', 'primary'));
+  }
+  @include when(text) {
+    border-width: 0px;
+  }
+  @include when(link) {
+    border-width: 0px;
+    padding: 0;
+    width: fit-content;
+    height: fit-content;
+    background-color: getVariableValue('color', 'transparent');
+    &:hover {
+      background-color: getVariableValue('color', 'transparent');
+    }
+  }
+  @include when(dashed) {
+    border-style: dashed;
+  }
+
+  @each $scene in $sceneTypes {
+    @include m($scene) {
+
+      @include button-action-scene-color($scene);
+
+      @include when(plain) {
+        @include plain-action-scene-color($scene);
+      }
+
+      @include when(text) {
+        @include text-action-scene-color($scene);
+      }
+
+      @include when(link) {
+        @include link-action-scene-color($scene);
+      }
+    }
+  }
+}

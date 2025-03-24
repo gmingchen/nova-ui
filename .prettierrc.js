@@ -1,7 +1,11 @@
 module.exports = {
   singleQuote: true,
   semi: false,
-  trailingComma: 'none',
+  trailingCommas: 'none',
   arrowParens: 'avoid',
-  endOfLine: 'auto'
+  endOfLine: 'auto',
+  printWidth: 100,
+  htmlWhitespaceSensitivity: 'ignore',
+  vueIndentScriptAndStyle: true,
+  singleAttributePerLine: true,
 }

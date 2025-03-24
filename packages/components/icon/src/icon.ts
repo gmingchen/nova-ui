@@ -1,12 +1,17 @@
 import { ExtractPropTypes, PropType } from 'vue'
+import { useIconProp } from '@nova-ui/hooks'
 
 export const iconProps = {
   name: {
-    type: String,
+    ...useIconProp(),
     required: true,
   },
-  color: String,
-  size: [Number, String] as PropType<number | string>
+  color: {
+    type: String,
+  },
+  size: {
+    type: [Number, String] as PropType<number | string>,
+  },
 } as const
 
-type IconType = ExtractPropTypes<typeof iconProps>
+export type IconType = ExtractPropTypes<typeof iconProps>

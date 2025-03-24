@@ -1,0 +1,26 @@
+@use 'variable.scss' as *;
+@use 'variable-mixins.scss' as *;
+
+:root {
+  @include set-variable('color-white', $color-white);
+  @include set-variable('color-black', $color-black);
+  @include set-variable('color-transparent', $color-transparent);
+  @include set-base-variable-from-keys('color', $sceneTypes, $color);
+  @include set-level-variable-from-keys('color', $sceneTypes, 'light', $color);
+
+  @include set-variable-from-keys('size', $sizeTypes, $size);
+
+  @include set-variable-from-keys('space', $moreSizeTypes, $space);
+  
+  @include set-variable-from-keys('fill-color', $depthTypes, $fill-color);
+
+  @include set-variable-from-keys('font-size', $moreSizeTypes, $font-size);
+  @include set-variable-from-keys('font-color', $fontColorTypes, $font-color);
+
+  @include set-variable('border-width', $border-width);
+  @include set-variable('border-style', $border-style);
+  @include set-variable-from-keys('border-color', $moreDepthTypes, $border-color);
+  @include set-variable-from-keys('border-radius', $borderRadiusTypes, $border-radius);
+  
+  @include set-variable-from-keys('mask-color', $depthTypes, $mask-color);
+}

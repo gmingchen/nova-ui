@@ -1,0 +1,57 @@
+@use 'sass:map';
+@use 'mixins' as *;
+
+$button: #{$namespace}-button;
+
+@include b(button-group) {
+  display: inline;
+  vertical-align: middle;
+  line-height: 1;
+  
+  & + & {
+    margin-left: getVariableValue('space');
+  }
+  
+  & > .#{$button} {
+    position: relative;
+    & + .#{$button} {
+      margin-left: -1px;
+    }
+
+    &:first-child {
+      border-top-right-radius: 0;
+      border-bottom-right-radius: 0;
+    }
+    &:last-child {
+      border-top-left-radius: 0;
+      border-bottom-left-radius: 0;
+    }
+    &:not(:first-child):not(:last-child) {
+      border-radius: 0;
+      z-index: 1;
+    }
+
+    &:hover {
+      z-index: 2;
+    }
+
+    & + .is-link {
+      margin-left: getVariableValue('space');
+    }
+  }
+
+  @each $scene in $sceneTypes {
+    .#{$button}--#{$scene} {
+      &:first-child {
+        border-right-color: getVariableValue('border-color');
+      }
+      &:last-child {
+        border-left-color: getVariableValue('border-color');
+      }
+      &:not(:first-child):not(:last-child) {
+        border-left-color: getVariableValue('border-color');
+        border-right-color: getVariableValue('border-color');
+      }
+    }
+  }
+}

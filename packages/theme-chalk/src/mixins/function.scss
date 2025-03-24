@@ -1,0 +1,19 @@
+@use 'config';
+
+@function createVariableName($list) {
+  $name: -- + config.$namespace;
+  @each $item in $list {
+    @if $item != '' {
+      $name: $name + '-' + $item;
+    }
+  }
+  @return $name;
+}
+
+@function getVariableName($args...) {
+  @return createVariableName($args);
+}
+
+@function getVariableValue($args...) {
+  @return var(createVariableName($args));
+}
