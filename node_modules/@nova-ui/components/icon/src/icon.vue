@@ -1,6 +1,6 @@
 <template>
   <i
-    :class="n.b()"
+    :class="ns.b()"
     :style="style"
   >
     <component :is="svg" />
@@ -14,7 +14,7 @@
   import * as Svgs from '@nova-ui/svgs'
   import { iconProps } from './icon'
 
-  const n = useNamespace('icon')
+  const ns = useNamespace('icon')
   defineOptions({
     name: 'NIcon',
   })

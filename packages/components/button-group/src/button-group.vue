@@ -1,5 +1,5 @@
 <template>
-  <div :class="n.b()">
+  <div :class="ns.b()">
     <slot></slot>
   </div>
 </template>
@@ -10,7 +10,7 @@
   import { buttonGroupProps } from './button-group'
   import { buttonGroupInjectionKey } from './constants'
 
-  const n = useNamespace('button-group')
+  const ns = useNamespace('button-group')
   defineOptions({
     name: 'NButtonGroup',
   })

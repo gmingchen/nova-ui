@@ -1,6 +1,8 @@
 import { PropType } from 'vue'
-import { SvgType } from '@nova-ui/svgs'
+import { svgs } from '@nova-ui/svgs'
+
+export type Icon = typeof svgs[number]
 
 export const useIconProp = () => ({
-  type: String as PropType<SvgType>,
+  type: String as PropType<Icon>,
 })

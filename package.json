@@ -14,13 +14,12 @@
   "license": "MIT",
   "dependencies": {
     "@nova-ui/components": "workspace:*",
-    "@nova-ui/constants": "workspace:*",
     "@nova-ui/hooks": "workspace:*",
     "@nova-ui/svgs": "workspace:*",
     "@nova-ui/theme-chalk": "workspace:*",
-    "@nova-ui/types": "workspace:*",
+    "@nova-ui/constants": "workspace:*",
     "@nova-ui/utils": "workspace:*",
-    "@vueuse/core": "^12.4.0",
+    "@nova-ui/types": "workspace:*",
     "sass": "^1.80.3",
     "typescript": "^5.6.3",
     "vue": "^3.5.12"

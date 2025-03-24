@@ -133,9 +133,7 @@ function toExport(keys) {
 function toType(keys) {
   return `export const svgs = [\n${keys
     .map(key => `  '${toGreatHump(key)}'`)
-    .join(',\n')},\n] as const
-
-export type SvgType = typeof svgs[number]`
+    .join(',\n')},\n] as const`
 }
 
 /**
