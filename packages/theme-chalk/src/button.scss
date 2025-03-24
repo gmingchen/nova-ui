@@ -31,7 +31,7 @@ $button: map.merge(
   cursor: pointer;
   outline: none;
   user-select: none;
-  transition: 0.1s;
+  transition: getVariableValue('duration', 'faster');
 
   & + & {
     margin-left: getVariableValue('space');

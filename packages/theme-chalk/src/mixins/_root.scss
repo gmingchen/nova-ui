@@ -23,4 +23,6 @@
   @include set-variable-from-keys('border-radius', $borderRadiusTypes, $border-radius);
   
   @include set-variable-from-keys('mask-color', $depthTypes, $mask-color);
+  
+  @include set-variable-from-keys('duration', $durationTypes, $duration);
 }

@@ -10,6 +10,7 @@ $sizeTypes: '', small, large;
 $moreSizeTypes: list.join((smaller, medium, larger), $sizeTypes);
 $depthTypes: '', light, dark;
 $moreDepthTypes: list.join((lighter, darker), $depthTypes);
+$durationTypes: '', fast, faster, slow, slower;
 
 $color: () !default;
 $color: map.deep-merge(
@@ -177,3 +178,14 @@ $border-radius: map.merge(
   $border-radius
 );
 
+$duration: () !default;
+$duration: map.merge(
+  (
+    '': 0.3s,
+    'fast': 0.2s,
+    'faster': 0.1s,
+    'slow': 0.4s,
+    'slower': 0.5s,
+  ),
+  $duration
+);

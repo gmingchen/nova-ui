@@ -1,0 +1,11 @@
+@use 'mixins' as *;
+
+@include b(collapse) {
+  &-enter-active,
+  &-leave-active {
+    transition:
+    getVariableValue('duration') max-height ease-in-out, 
+    getVariableValue('duration') padding-top ease-in-out,
+    getVariableValue('duration') padding-bottom ease-in-out;
+  }
+}
