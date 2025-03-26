@@ -42,7 +42,7 @@ html, body {
     max-height: 300px;
     padding: 20px;
     .item {
-      height: 400px;
+      height: 100px;
       background-color: var(--n-color-warning);
     }
   }

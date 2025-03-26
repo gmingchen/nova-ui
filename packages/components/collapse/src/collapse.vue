@@ -27,7 +27,7 @@ const listeners = {
 
     const style = getComputedStyle(el as Element)
     const { height, maxHeight, paddingTop, paddingBottom } = style
-    
+
     if (parseInt(height, 10)) el.dataset.height = height
     if (parseInt(maxHeight, 10)) el.dataset.maxHeight = maxHeight
     el.dataset.paddingTop = paddingTop
@@ -40,12 +40,10 @@ const listeners = {
   enter: (el: RendererElement) => {
     requestAnimationFrame(() => {
       el.dataset.overflow = el.style.overflow
-
-      console.log(el.dataset.maxHeight, parseInt(el.dataset.height, 10), parseInt(el.dataset.maxHeight, 10));
-
       
-      
-      if (el.dataset.height) {
+      if (el.dataset.maxHeight) {
+        el.style.maxHeight = el.dataset.maxHeight
+      } else if (el.dataset.height) {
         el.style.maxHeight = el.dataset.height
       } else if (el.scrollHeight !== 0) {
         const maxHeight = el.scrollHeight + parseInt(el.dataset.paddingTop, 10) + parseInt(el.dataset.paddingBottom, 10)
