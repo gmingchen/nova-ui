@@ -1,7 +1,0 @@
-@use 'mixins' as *;
-
-@include b(icon) {
-  display: inline-flex;
-  width: 1em;
-  height: 1em;
-}

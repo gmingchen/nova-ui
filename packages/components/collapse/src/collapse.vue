@@ -14,11 +14,28 @@ defineOptions({
 });
 
 const reset = (el: RendererElement) => {
-  const { maxHeight, overflow, paddingTop, paddingBottom } = el.dataset
+  const { maxHeight, height, overflow, paddingTop, paddingBottom } = el.dataset
+  el.style.height = height;
   el.style.maxHeight = maxHeight;
   el.style.overflow = overflow;
   el.style.paddingTop = paddingTop; 
   el.style.paddingBottom = paddingBottom; 
+}
+
+const getMaxHeight = (el: RendererElement) => {
+  let result = null
+  const { maxHeight, height } = el.dataset
+  if (maxHeight && height) {
+    result = parseInt(maxHeight, 10) < parseInt(height, 10) ? maxHeight : height
+  } else if (maxHeight) {
+    result = maxHeight
+  } else if (height) {
+    result = height
+  } else if (el.scrollHeight !== 0) {
+    const maxHeight = el.scrollHeight + parseInt(el.dataset.paddingTop, 10) + parseInt(el.dataset.paddingBottom, 10)
+    result = `${ maxHeight }px`
+  }
+  return result
 }
 
 const listeners = {
@@ -40,24 +57,14 @@ const listeners = {
   enter: (el: RendererElement) => {
     requestAnimationFrame(() => {
       el.dataset.overflow = el.style.overflow
-      
-      if (el.dataset.maxHeight) {
-        el.style.maxHeight = el.dataset.maxHeight
-      } else if (el.dataset.height) {
-        el.style.maxHeight = el.dataset.height
-      } else if (el.scrollHeight !== 0) {
-        const maxHeight = el.scrollHeight + parseInt(el.dataset.paddingTop, 10) + parseInt(el.dataset.paddingBottom, 10)
-        el.style.maxHeight = `${ maxHeight }px`
-      } else {
-        el.style.maxHeight = 0
-      }
+
+      el.style.maxHeight = getMaxHeight(el)
       el.style.paddingTop = el.dataset.paddingTop
       el.style.paddingBottom = el.dataset.paddingBottom
       el.style.overflow = 'hidden'
     })
   },
   afterEnter: (el: RendererElement) => {
-    el.style.maxHeight = ''
     el.style.overflow = el.dataset.overflow
   },
   enterCancelled: (el: RendererElement) => {
@@ -68,8 +75,8 @@ const listeners = {
     el.dataset.paddingTop = el.style.paddingTop
     el.dataset.paddingBottom = el.style.paddingBottom
     el.dataset.overflow = el.style.overflow
-
-    el.style.maxHeight = `${el.scrollHeight}px`
+    
+    el.style.maxHeight = getMaxHeight(el)
     el.style.overflow = 'hidden'
   },
   leave: (el: RendererElement) => {

@@ -39,10 +39,11 @@ html, body {
   .panel {
     width: 200px;
     background-color: var(--n-color-primary);
-    max-height: 300px;
+    max-height: 1000px;
+    // height: 500px;
     padding: 20px;
     .item {
-      height: 100px;
+      height: 400px;
       background-color: var(--n-color-warning);
     }
   }
