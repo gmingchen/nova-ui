@@ -27,13 +27,11 @@ const getMaxHeight = (el: RendererElement) => {
   const { maxHeight, height } = el.dataset
   if (maxHeight && height) {
     result = parseInt(maxHeight, 10) < parseInt(height, 10) ? maxHeight : height
-  } else if (maxHeight) {
-    result = maxHeight
   } else if (height) {
     result = height
   } else if (el.scrollHeight !== 0) {
-    const maxHeight = el.scrollHeight + parseInt(el.dataset.paddingTop, 10) + parseInt(el.dataset.paddingBottom, 10)
-    result = `${ maxHeight }px`
+    result = el.scrollHeight + parseInt(el.dataset.paddingTop, 10) + parseInt(el.dataset.paddingBottom, 10) + 'px'
+    result = parseInt(maxHeight, 10) < parseInt(result, 10) ? maxHeight : result
   }
   return result
 }

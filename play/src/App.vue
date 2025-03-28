@@ -40,7 +40,7 @@ html, body {
     width: 200px;
     background-color: var(--n-color-primary);
     max-height: 1000px;
-    // height: 500px;
+    height: 500px;
     padding: 20px;
     .item {
       height: 400px;
