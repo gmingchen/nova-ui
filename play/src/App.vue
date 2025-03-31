@@ -2,19 +2,19 @@
 import { ref } from 'vue'
 
 interface TreeNode {
+  key: string;
   label: string;
-  value: string;
   children: TreeNode[];
 }
 
 const createTree = (level = 4, parent = ''): TreeNode[] => {
   const tree = [];
   for (let i = 0; i < level; i++) {
-    const value = `${ parent ? parent + '-' : '' }${ i }`;
-    const label = `Node ${ value }`
-    const node: TreeNode = { label, value, children: [] };
+    const key = `${ parent ? parent + '-' : '' }${ i }`;
+    const label = `Node ${ key }`
+    const node: TreeNode = { label, key, children: [] };
     if (level > 1) {
-      node.children = createTree(level - 1, value);
+      node.children = createTree(level - 1, key);
     }
     tree.push(node);
   }
@@ -23,15 +23,11 @@ const createTree = (level = 4, parent = ''): TreeNode[] => {
 
 
 const data = ref(createTree(4));
-
-console.log(data.value);
-
-
 </script>
 
 <template>
   <div>
-    <NTree :data="data"></NTree>
+    <NTree :data="data" :default-expand-keys="['0']"></NTree>
   </div>
 </template>
 
