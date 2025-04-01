@@ -1,0 +1,21 @@
+@use 'sass:map';
+@use 'mixins' as *;
+
+@include b(tree) {}
+
+@include b(tree-node) {
+  cursor: pointer;
+
+  @include e(icon) {
+    margin: 0 6px;
+    font-size: getVariableValue('font-size', 'smaller');
+  }
+
+  @include e(label) {
+    font-size: getVariableValue('font-size');
+  }
+
+  &:hover {
+    background-color: getVariableValue('fill-color', 'light');
+  }
+}

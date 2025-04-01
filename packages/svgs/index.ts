@@ -34,6 +34,7 @@ import Question from './components/question.vue'
 import RightCircleFill from './components/right-circle-fill.vue'
 import RightCircle from './components/right-circle.vue'
 import Right from './components/right.vue'
+import TriangleRight from './components/triangle-right.vue'
 import UpCircleFill from './components/up-circle-fill.vue'
 import UpCircle from './components/up-circle.vue'
 import Up from './components/up.vue'
@@ -77,6 +78,7 @@ export {
   RightCircleFill,
   RightCircle,
   Right,
+  TriangleRight,
   UpCircleFill,
   UpCircle,
   Up,
@@ -121,6 +123,7 @@ export const svgs = [
   'RightCircleFill',
   'RightCircle',
   'Right',
+  'TriangleRight',
   'UpCircleFill',
   'UpCircle',
   'Up',

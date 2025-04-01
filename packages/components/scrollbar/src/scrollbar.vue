@@ -17,20 +17,20 @@
       <slot></slot>
     </div>
     <template v-if="!native">
-      <Bar
+      <NBar
         v-if="!direction || direction === 'vertical'"
         ref="barVerticalRef"
         direction="vertical"
         :always="always"
       >
-      </Bar>
-      <Bar
+      </NBar>
+      <NBar
         v-if="!direction || direction === 'horizontal'"
         ref="barHorizontalRef"
         direction="horizontal"
         :always="always"
       >
-      </Bar>
+      </NBar>
     </template>
   </div>
 </template>
@@ -40,7 +40,7 @@
   import { MaybeComputedElementRef, useResizeObserver } from '@vueuse/core'
   import { useNamespace } from '@nova-ui/hooks'
   import { isNumber, isStringNumber, addUnit, isObject } from '@nova-ui/utils'
-  import Bar from './bar.vue'
+  import NBar from './bar.vue'
   import { BarInstance } from './bar'
   import { scrollbarProps, scrollbarEmits } from './scrollbar'
   import { scrollbarInjectionKey } from './constants'

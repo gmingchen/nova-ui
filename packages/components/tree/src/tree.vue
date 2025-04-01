@@ -4,7 +4,7 @@
       n.b()
     ]"
   >
-    tree
+    <NTreeNode v-for="node in flattenNodes" :key="node.key" :data="node"></NTreeNode>
   </div>
 </template>
 
@@ -12,6 +12,7 @@
 import { computed, ref, watch } from 'vue'
 import { useNamespace } from '@nova-ui/hooks'
 import { TreeData, TreeNode, treeProps, Value } from './tree'
+import NTreeNode from './tree-node.vue'
 
 const n = useNamespace('tree')
 defineOptions({
