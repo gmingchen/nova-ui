@@ -1,20 +1,13 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 
-const visiable = ref(false)
-const onToggle = () => {
-  visiable.value = !visiable.value
-}
+const checkbox = ref(false)
+
 </script>
 
 <template>
   <div>
-    <NButton @click="onToggle">Toggle</NButton>
-    <NCollapse>
-      <div v-show="visiable" class="panel">
-        <div class="item"></div>
-      </div>
-    </NCollapse>
+    <NCheckbox v-model="checkbox" label="体育"></NCheckbox>
   </div>
 </template>
 

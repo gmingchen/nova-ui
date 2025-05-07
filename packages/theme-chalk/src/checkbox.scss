@@ -1,0 +1,12 @@
+@use 'sass:map';
+@use 'mixins' as *;
+
+@include b(checkbox) {
+  cursor: pointer;
+
+  @include e(input) {
+    display: none;
+  }
+}
+
+
