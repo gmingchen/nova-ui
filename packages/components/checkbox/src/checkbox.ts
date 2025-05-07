@@ -1,4 +1,5 @@
 import { ExtractPropTypes, PropType } from 'vue'
+import { useSizeProp } from '@nova-ui/hooks'
 
 export type CheckboxValueType = string | number | boolean
 
@@ -19,6 +20,7 @@ export const checkboxProps = {
     type: [Boolean, Number, String],
     default: undefined
   },
+  size: useSizeProp(),
   tag: {
     type: String as PropType<CheckboxTagType>,
     default: checkboxTags[0] 

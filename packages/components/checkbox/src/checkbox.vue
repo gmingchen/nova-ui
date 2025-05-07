@@ -2,15 +2,18 @@
   <component
     :is="tag"
     :class="[
-      n.b()
+      n.b(),
+      n.m(props.size),
+      n.is('checked', model),
     ]"
   >
-    <span>
+    <span :class="n.e('wrapper')">
       <input
         v-model="model"
         type="checkbox"
         :class="n.e('input')"
       />
+      <span :class="n.e('box')"></span>
     </span>
     <span
       :class="n.e('label')"

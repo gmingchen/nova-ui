@@ -1,13 +1,18 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 
-const checkbox = ref(false)
+const checkbox = ref(true)
 
 </script>
 
 <template>
   <div>
-    <NCheckbox v-model="checkbox" label="体育"></NCheckbox>
+    <NCheckbox
+      v-model="checkbox"
+      label="体育"
+    >
+    </NCheckbox>
+    <p>{{ checkbox }}</p>
   </div>
 </template>
 

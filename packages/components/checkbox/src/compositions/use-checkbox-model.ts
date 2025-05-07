@@ -8,10 +8,20 @@ export const useCheckboxModel = (props: CheckboxType) => {
 
   const model = computed({
     get() {
-      return props.modelValue
+      if(props.activeValue !== undefined) {
+        return props.modelValue === props.activeValue
+      } else {
+        return props.modelValue
+      }
     },
     set(value) {
-      emit(UPDATE_MODEL_EVENT, value)
+      if(props.activeValue !== undefined) {
+        console.log(props);
+        
+        emit(UPDATE_MODEL_EVENT, value ? props.activeValue : props.inActiveValue)
+      } else {
+        emit(UPDATE_MODEL_EVENT, value)
+      }
     } 
   })
 

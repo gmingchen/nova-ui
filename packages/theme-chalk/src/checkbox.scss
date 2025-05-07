@@ -2,10 +2,47 @@
 @use 'mixins' as *;
 
 @include b(checkbox) {
-  cursor: pointer;
+  @include set-variable(('checkbox-background-color'), getVariableValue('border-color', 'light'));
+  @include set-variable(('checkbox-box-active-background-color'), getVariableValue('color', 'primary'));
+  @include set-variable(('checkbox-label-active-font-color'), getVariableValue('color', 'primary'));
+}
 
+@include b(checkbox) {
+  cursor: pointer;
+  font-size: getVariableValue('font-size');
+
+  @include e(wrapper) {
+  }
   @include e(input) {
     display: none;
+  }
+  @include e(box) {
+    display: inline-block;
+    width: 14px;
+    height: 14px;
+  }
+
+  
+  @include e(label) {
+  }
+
+
+
+  @each $checkboxSize in $sizeTypes {
+    @include m($checkboxSize) {
+      font-size: getVariableValue('font-size', $checkboxSize);
+    }
+  }
+
+
+  @include when(checked) {
+    color: getVariableValue('checkbox-label-active-font-color');
+    @include e(box) {
+      
+    }
+    @include e(label) {
+      
+    }
   }
 }
 
