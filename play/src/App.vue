@@ -1,7 +1,15 @@
 <script setup lang="ts">
+import { CheckboxValueType } from '@nova-ui/components'
 import { ref } from 'vue'
 
-const checkbox = ref(true)
+const checkbox = ref(1)
+
+const onChange = (checked: boolean, value: CheckboxValueType) => {
+  console.log('onChange', checked, value)
+}
+const onClick = (event: Event) => {
+  console.log('onClick') 
+}
 
 </script>
 
@@ -9,10 +17,17 @@ const checkbox = ref(true)
   <div>
     <NCheckbox
       v-model="checkbox"
+      :active-value="1"
+      :in-active-value="0"
       label="体育"
+      size="large"
+      border
+      @change="onChange"
+      @click="onClick"
     >
     </NCheckbox>
     <p>{{ checkbox }}</p>
+    <NButton type="link">123</NButton>
   </div>
 </template>
 

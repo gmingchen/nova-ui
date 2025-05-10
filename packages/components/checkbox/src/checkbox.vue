@@ -4,17 +4,24 @@
     :class="[
       n.b(),
       n.m(props.size),
-      n.is('checked', model),
+      n.is('checked', !!model),
+      n.is('indeterminate', props.indeterminate),
+      n.is('disabled', props.disabled),
+      n.is('border', props.border),
+      n.is('link', props.link),
     ]"
   >
-    <span :class="n.e('wrapper')">
+    <label :class="n.e('wrapper')">
       <input
         v-model="model"
         type="checkbox"
+        :disabled="props.disabled"
         :class="n.e('input')"
+        @change.stop="handleChange"
+        @click.stop
       />
       <span :class="n.e('box')"></span>
-    </span>
+    </label>
     <span
       :class="n.e('label')"
     >
@@ -26,7 +33,7 @@
 
 <script lang="ts" setup>
   import { useNamespace } from '@nova-ui/hooks'
-  import { checkboxProps } from './checkbox'
+  import { checkboxProps, CheckboxEmits } from './checkbox'
   import { useCheckbox } from './compositions'
 
   const n = useNamespace('checkbox')
@@ -34,8 +41,12 @@
     name: 'NCheckbox',
   })
   const props = defineProps(checkboxProps)
+  defineEmits<CheckboxEmits>()
 
-  const { model } = useCheckbox(props)
+  const { 
+    model,
+    handleChange,
+  } = useCheckbox(props)
 
 </script>
 

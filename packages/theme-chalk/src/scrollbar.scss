@@ -84,7 +84,7 @@ $wrap: #{$namespace}-scrollbar__wrap;
   bottom: 0;
   border-radius: getVariableValue('scrollbar-thumb-border-radius');
   opacity: 0;
-  transition: opacity 0.1s ease-out;
+  transition: opacity getVariableValue('duration', 'faster') ease-out;
   cursor: pointer;
   &:hover {
     z-index: 2;

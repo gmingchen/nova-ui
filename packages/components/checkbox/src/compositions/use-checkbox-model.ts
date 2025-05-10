@@ -11,13 +11,11 @@ export const useCheckboxModel = (props: CheckboxType) => {
       if(props.activeValue !== undefined) {
         return props.modelValue === props.activeValue
       } else {
-        return props.modelValue
+        return !!props.modelValue
       }
     },
     set(value) {
       if(props.activeValue !== undefined) {
-        console.log(props);
-        
         emit(UPDATE_MODEL_EVENT, value ? props.activeValue : props.inActiveValue)
       } else {
         emit(UPDATE_MODEL_EVENT, value)
