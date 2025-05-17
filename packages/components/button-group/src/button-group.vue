@@ -5,7 +5,7 @@
 </template>
 
 <script lang="ts" setup>
-  import { provide, reactive, toRef, toRefs } from 'vue'
+  import { provide } from 'vue'
   import { useNamespace } from '@nova-ui/hooks'
   import { buttonGroupProps } from './button-group'
   import { buttonGroupInjectionKey } from './constants'

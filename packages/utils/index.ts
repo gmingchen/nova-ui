@@ -1,5 +1,0 @@
-export * from './install'
-export * from './dataType'
-export * from './style'
-export * from './object'
-export * from './error'
