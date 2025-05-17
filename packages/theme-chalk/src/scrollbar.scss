@@ -1,7 +1,7 @@
 @use 'mixins' as *;
 
 $bar: #{$namespace}-bar;
-$wrap: #{$namespace}-scrollbar__wrap;
+$wrap: #{$namespace}-scrollbar#{$element-separator}wrap;
 
 @include b(scrollbar) {
   @include set-variable(('scrollbar-thumb-size'), '6px');

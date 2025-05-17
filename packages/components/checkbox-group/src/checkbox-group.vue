@@ -1,13 +1,17 @@
 <template>
-  <div :class="n.b()">
+  <component
+    :is="tag" 
+    :class="n.b()"
+  >
     <slot></slot>
-  </div>
+  </component>
 </template>
 
 <script lang="ts" setup>
-  import { provide, reactive, toRef, toRefs } from 'vue'
+  import { provide } from 'vue'
   import { useNamespace } from '@nova-ui/hooks'
-  import { checkboxGroupProps } from './checkbox-group'
+  import { CheckboxGroupEmits, CheckboxGroupInjection, checkboxGroupProps } from './checkbox-group'
+  import { useCheckboxGroup } from './compositions'
   import { checkboxGroupInjectionKey } from './constants'
 
   const n = useNamespace('checkbox-group')
@@ -15,9 +19,16 @@
     name: 'NCheckboxGroup',
   })
   const props = defineProps(checkboxGroupProps)
+  defineEmits<CheckboxGroupEmits>()
 
-  provide(
+  const { model, changeHandler } = useCheckboxGroup(props)
+
+  provide<CheckboxGroupInjection>(
     checkboxGroupInjectionKey,
-    props
+    {
+      ...props,
+      model,
+      changeHandler
+    }
   )
 </script>

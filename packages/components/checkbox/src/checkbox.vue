@@ -3,20 +3,21 @@
     :is="tag"
     :class="[
       n.b(),
-      n.m(props.size),
+      n.m(_props.size),
       n.is('checked', !!model),
       n.is('indeterminate', props.indeterminate),
-      n.is('disabled', props.disabled),
-      n.is('border', props.border),
-      n.is('link', props.link),
+      n.is('disabled', _props.disabled),
+      n.is('border', _props.border),
+      n.is('link', _props.link),
     ]"
   >
     <label :class="n.e('wrapper')">
       <input
         v-model="model"
         type="checkbox"
-        :disabled="props.disabled"
+        :disabled="_props.disabled"
         :class="n.e('input')"
+        :name="_props.name"
         @change.stop="handleChange"
         @click.stop
       />
@@ -32,22 +33,21 @@
 </template>
 
 <script lang="ts" setup>
-  import { useNamespace } from '@nova-ui/hooks'
-  import { checkboxProps, CheckboxEmits } from './checkbox'
+  import { useNamespace, usePropInject } from '@nova-ui/hooks'
+  import { checkboxProps, CheckboxEmits, CheckboxType } from './checkbox'
   import { useCheckbox } from './compositions'
+  import { CheckboxGroupInjection, checkboxGroupInjectionKey } from '../../checkbox-group'
 
   const n = useNamespace('checkbox')
   defineOptions({
     name: 'NCheckbox',
   })
-  const props = defineProps(checkboxProps)
   defineEmits<CheckboxEmits>()
+  const props = defineProps(checkboxProps)
+  const _props = usePropInject<CheckboxGroupInjection, CheckboxType>(checkboxGroupInjectionKey, props)
 
   const { 
     model,
     handleChange,
   } = useCheckbox(props)
-
 </script>
-
-

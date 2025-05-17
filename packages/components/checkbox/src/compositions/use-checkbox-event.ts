@@ -1,12 +1,13 @@
-import { getCurrentInstance, WritableComputedRef } from 'vue';
+import { ComputedRef, getCurrentInstance } from 'vue';
+import { CHANGE_EVENT } from '@nova-ui/constants/event';
 import { CheckboxType } from '../checkbox';
 
-export const useCheckboxEvent = (props: CheckboxType, model: WritableComputedRef<boolean>) => {
+export const useCheckboxEvent = (props: CheckboxType, model: ComputedRef<boolean>) => {
   const { emit } = getCurrentInstance()!
   
   return {
     handleChange: (e: Event) => {
-      emit('change', model.value, props.modelValue, e)
+      emit(CHANGE_EVENT, model.value, props.modelValue, e)
     }
   }
 }

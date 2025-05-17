@@ -1,5 +1,5 @@
 import { withInstall } from '@nova-ui/utils'
-import CheckboxGroup from './src/button-group.vue'
+import CheckboxGroup from './src/checkbox-group.vue'
 export * from './src/constants'
 
 export const NCheckboxGroup = withInstall(CheckboxGroup)

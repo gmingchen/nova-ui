@@ -1,8 +1,8 @@
 @use 'sass:map';
 @use 'mixins' as *;
 
-$box: #{$namespace}-checkbox__box;
-$label: #{$namespace}-checkbox__label;
+$box: #{$namespace}-checkbox#{$element-separator}box;
+$label: #{$namespace}-checkbox#{$element-separator}label;
 
 $checkbox-box-size: () !default;
 $checkbox-box-size: map.merge(
@@ -124,7 +124,7 @@ $checkbox-box-padding: map.merge(
         color: getVariableValue('checkbox', 'checked-font-color');
       }
     }
-    &:is(.is-indeterminate) {
+    &:is(.#{$state-prefix}indeterminate) {
       .#{$box} {
         &::after{
           transform: scaleY(0);
@@ -149,12 +149,12 @@ $checkbox-box-padding: map.merge(
     }
   }
   @include when(border) {
-    &:not(.is-link) {
+    &:not(.#{$state-prefix}link) {
       padding: 0 map.get($checkbox-box-padding, '');
       border: getVariableValue('border');
       border-radius: getVariableValue('checkbox', 'border-radius');
-      &:is(.is-checked),
-      &:is(.is-indeterminate) {
+      &:is(.#{$state-prefix}checked),
+      &:is(.#{$state-prefix}indeterminate) {
         border-color: getVariableValue('checkbox', 'checked-border-color');
       }
     }
@@ -181,8 +181,8 @@ $checkbox-box-padding: map.merge(
         color: getVariableValue('checkbox', 'disabled-font-color');
       }
     }
-    &:is(.is-border) {
-      &:not(.is-link) {
+    &:is(.#{$state-prefix}border) {
+      &:not(.#{$state-prefix}link) {
         border-color: getVariableValue('checkbox', 'disabled-border-color'); 
       }
     }
@@ -206,8 +206,8 @@ $checkbox-box-padding: map.merge(
       .#{$label} {
         font-size: map.get($checkbox-box-size, $checkboxSize);
       }
-      &:is(.is-border) {
-        &:not(.is-link) {
+      &:is(.#{$state-prefix}border) {
+        &:not(.#{$state-prefix}link) {
           padding: 0 map.get($checkbox-box-padding, $checkboxSize);
           border: getVariableValue('border');
           border-radius: getVariableValue('checkbox', 'border-radius');

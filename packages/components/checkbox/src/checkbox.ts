@@ -1,6 +1,6 @@
 import { ExtractPropTypes, PropType } from 'vue'
 import { useSizeProp } from '@nova-ui/hooks'
-import { CHANGE_EVENT, CLICK_EVENT, UPDATE_MODEL_EVENT } from "@nova-ui/constants/event"
+import { CHANGE_EVENT, UPDATE_MODEL_EVENT } from "@nova-ui/constants/event"
 
 export type CheckboxValueType = string | number | boolean
 
@@ -21,7 +21,7 @@ export const checkboxProps = {
   },
   inActiveValue: {
     type: [Boolean, Number, String],
-    default: undefined
+    default: undefined  
   },
   indeterminate: Boolean,
   size: useSizeProp(),
@@ -32,6 +32,7 @@ export const checkboxProps = {
   border: Boolean,
   link: Boolean,
   disabled: Boolean,
+  name: String,
 }
 
 export type CheckboxType = ExtractPropTypes<typeof checkboxProps>
