@@ -35,7 +35,7 @@ $button: #{$namespace}-button;
       z-index: 2;
     }
 
-    & + .is-link {
+    & + .#{$state-prefix}link {
       margin-left: getVariableValue('space');
     }
   }

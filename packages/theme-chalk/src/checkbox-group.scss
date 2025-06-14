@@ -1,0 +1,19 @@
+@use 'sass:map';
+@use 'mixins' as *;
+
+$checkbox: #{$namespace}-checkbox;
+
+@include b(checkbox-group) {
+  .#{$checkbox} {
+    margin-right: getVariableValue('space');
+    &:last-child {
+      margin-right: 0;
+    }
+  }
+
+  @each $checkboxSize in $sizeTypes {
+    .#{$checkbox}#{$modifier-separator}#{$checkboxSize} {
+      margin-right: getVariableValue('space', $checkboxSize);
+    }
+  }
+}

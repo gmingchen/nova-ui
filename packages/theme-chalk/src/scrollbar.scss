@@ -1,7 +1,7 @@
 @use 'mixins' as *;
 
 $bar: #{$namespace}-bar;
-$wrap: #{$namespace}-scrollbar__wrap;
+$wrap: #{$namespace}-scrollbar#{$element-separator}wrap;
 
 @include b(scrollbar) {
   @include set-variable(('scrollbar-thumb-size'), '6px');
@@ -84,7 +84,7 @@ $wrap: #{$namespace}-scrollbar__wrap;
   bottom: 0;
   border-radius: getVariableValue('scrollbar-thumb-border-radius');
   opacity: 0;
-  transition: opacity 0.1s ease-out;
+  transition: opacity getVariableValue('duration', 'faster') ease-out;
   cursor: pointer;
   &:hover {
     z-index: 2;

@@ -163,6 +163,7 @@ $border-color: map.merge(
   ),
   $border-color
 );
+$border: getVariableValue('border-width') getVariableValue('border-style') getVariableValue('border-color') !default;
 $borderRadiusTypes: '', small, smaller, large, larger, round, circle;
 $border-radius: () !default;
 $border-radius: map.merge(

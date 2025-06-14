@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { CheckboxValueType } from '@nova-ui/components'
 import { ref } from 'vue'
 
 interface TreeNode {
